@@ -1,11 +1,37 @@
-const { User } = require('../models')
+const { User, Barks } = require('../models')
 
 const getUserWithWatched = async (req, res) => {
   try {
     console.log(req.params.userId)
     const data = await User.findOne({
       where: { id: req.params.userId },
-      include: [{ model: User, as: 'competition', through: [] }]
+      include: [{ model: User, as: 'competition', through: Watchlist }]
+    })
+
+    res.send(data)
+  } catch (error) {
+    res.status(500).send({ error: error.message })
+  }
+}
+const getUserWithBarker = async (req, res) => {
+  try {
+    console.log(req.params.userId)
+    const data = await User.findOne({
+      where: { id: req.params.userId },
+      include: [{ model: User, as: 'barker', through: Barks }]
+    })
+
+    res.send(data)
+  } catch (error) {
+    res.status(500).send({ error: error.message })
+  }
+}
+const getUserWithBarked = async (req, res) => {
+  try {
+    console.log(req.params.userId)
+    const data = await User.findOne({
+      where: { id: req.params.userId },
+      include: [{ model: User, as: 'barked', through: Barks }]
     })
 
     res.send(data)
@@ -48,5 +74,7 @@ const getUser = async (req,res) => {
 module.exports = {
   getUserWithWatched,
   getUsers,
-  getUser
+  getUser,
+  getUserWithBarker,
+  getUserWithBarked
 }

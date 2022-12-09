@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Watchlist extends Model {
+  class Bark extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,27 +13,29 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Watchlist.init({
-    being_watched: {
-     type: DataTypes.INTEGER,
-     onDelete: 'CASCADE',
-     references: {
-      model: 'classuseres',
-      key: 'id'
-     }
-    },
-    watcher: {
+  Bark.init({
+    bark: DataTypes.STRING,
+    barker: {
       type: DataTypes.INTEGER,
       onDelete: 'CASCADE',
       references: {
        model: 'users',
        key: 'id'
       }
-    }
-  }, {
+     },   
+    barked: {
+      type: DataTypes.INTEGER,
+      onDelete: 'CASCADE',
+      references: {
+       model: 'users',
+       key: 'id'
+      }
+     },
+    }, 
+  {
     sequelize,
-    modelName: 'Watchlist',
-    tableName: 'watchlists',
+    modelName: 'Bark',
+    tableName: 'barks',
   });
-  return Watchlist;
+  return Bark;
 };
