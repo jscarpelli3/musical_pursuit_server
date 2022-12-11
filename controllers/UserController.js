@@ -19,12 +19,33 @@ const getUser = async (req,res) => {
   }
 }
 
+
+const deleteUser = async (req, res) => {
+  try {
+    await User.destroy({ where: { id: req.params.userId } })
+    res.send({ msg: 'User Deleted', payload: req.params.userId, status: 'Ok' })
+  } catch (error) {
+    throw error
+  }
+}
+
+const updateStats = async (req,res) => {
+  try {
+    const updatedStats = await User.update(
+      {...req.body},
+      {where: {id:req.params.userId},returning:true}
+    )
+    res.send(updatedStats)
+  } catch (error) {
+    throw error
+  }
+}
+
 const getUserWithWatched = async (req, res) => {
   try {
-    console.log(req.params.userId)
     const data = await User.findOne({
       where: { id: req.params.userId },
-      include: [{ model: User, as: 'competition', through: Watchlist }]
+      include: [{ model: User, as: 'watcher', through: Watchlist }]
     })
 
     res.send(data)
@@ -66,5 +87,7 @@ module.exports = {
   getUsers,
   getUser,
   getUserWithBarker,
-  getUserWithBarked
+  getUserWithBarked,
+  deleteUser,
+  updateStats
 }

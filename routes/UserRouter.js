@@ -11,27 +11,33 @@ router.get(
 )
 
 //Get All Users
-router.get('/',
+router.get('/users',
 // middleware.stripToken,
   // middleware.verifyToken,
   controller.getUsers
 )
 
 //Get a single user 
-router.get('/user/:userId',
+router.get('/:userId',
 // middleware.stripToken,
 // middleware.verifyToken,
 controller.getUser
 )
 
-//Get the User With Their Barks Made upon others
-router.get(
-  '/userbarker/:userId',
-  // middleware.stripToken,
-  // middleware.verifyToken,
-  controller.getUserWithBarker
-  )
-  
+//Delete a single user 
+router.delete('/:userId',
+// middleware.stripToken,
+// middleware.verifyToken,
+controller.deleteUser
+)
+
+
+//Update a users stats 
+router.put('/:userId',
+// middleware.stripToken,
+// middleware.verifyToken,
+controller.updateStats
+)
 
 //Get the User With Their Barks Made upon THEM
 router.get(
@@ -39,6 +45,14 @@ router.get(
   // middleware.stripToken,
   // middleware.verifyToken,
   controller.getUserWithBarked
-)
+  )
+  //Get the User With Their Barks Made upon others
+  router.get(
+    '/userbarker/:userId',
+    // middleware.stripToken,
+    // middleware.verifyToken,
+    controller.getUserWithBarker
+    )
+    
 
 module.exports = router
