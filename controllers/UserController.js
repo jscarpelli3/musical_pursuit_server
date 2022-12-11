@@ -1,4 +1,4 @@
-const { User, Bark } = require('../models')
+const { User, Bark, Watchlist } = require('../models')
 
 const getUsers = async (req,res) => {
   try{
@@ -45,7 +45,7 @@ const getUserWithWatched = async (req, res) => {
   try {
     const data = await User.findOne({
       where: { id: req.params.userId },
-      include: [{ model: User, as: 'watcher', through: Watchlist }]
+      include: [{ model: User, as: 'watching', through: Watchlist }]
     })
 
     res.send(data)

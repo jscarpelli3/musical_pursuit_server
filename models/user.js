@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         through: models.Watchlist,
         foreignKey: 'watcher',
         otherKey: 'being_watched',
-        as: 'competition'
+        as: 'being_watched'
       }),
       User.belongsToMany(models.User, {
         through: models.Bark,
