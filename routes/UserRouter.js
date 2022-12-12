@@ -32,10 +32,10 @@ controller.deleteUser
 )
 
 //Delete a a watchlist record
-router.delete('/:watchId',
+router.delete('/:being_watchedId/:watcherId',
 // middleware.stripToken,
 // middleware.verifyToken,
-controller.deleteFromWatchList
+controller.deleteFromWatchlist
 )
 
 router.post(

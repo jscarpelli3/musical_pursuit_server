@@ -45,7 +45,7 @@ const getUserWithWatched = async (req, res) => {
   try {
     const data = await User.findOne({
       where: { id: req.params.userId },
-      include: [{ model: User, as: 'watching', through: Watchlist }]
+      include: [{ model: User, as: 'being_watched', through: Watchlist }]
     })
 
     res.send(data)
@@ -65,8 +65,8 @@ const addToWatchlist = async (req, res) => {
 
 const deleteFromWatchlist = async (req, res) => {
   try {
-    await Watchlist.destroy({ where: { id: req.params.watchId} })
-    res.send({ msg: 'Watch Deleted', payload: req.params.watchId, status: 'Ok' })
+    await Watchlist.destroy({ where: { being_watched: req.params.being_watchedId, watcher: req.params.watcherId}})
+    res.send({ msg: 'Watch Deleted', status: 'Ok' })
   } catch (error) {
     throw error
   }
