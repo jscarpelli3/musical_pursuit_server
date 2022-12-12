@@ -30,35 +30,6 @@ const deleteBark = async (req, res) => {
   }
 }
 
-// const getUserWithBarker = async (req, res) => {
-//   try {
-//     console.log(req.params.userId)
-//     const data = await User.findOne({
-//       where: { id: req.params.userId },
-//       include: [{ model: User, as: 'barker', through: Barks }]
-//     })
-
-//     res.send(data)
-//   } catch (error) {
-//     res.status(500).send({ error: error.message })
-//   }
-// }
-// const getUserWithBarked = async (req, res) => {
-//   try {
-//     console.log(req.params.userId)
-//     const data = await User.findOne({
-//       where: { id: req.params.userId },
-//       include: [{ model: User, as: 'barked', through: Barks }]
-//     })
-
-//     res.send(data)
-//   } catch (error) {
-//     res.status(500).send({ error: error.message })
-//   }
-// }
-
-
-
 
 module.exports = {
   createBark,

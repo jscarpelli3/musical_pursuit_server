@@ -31,6 +31,19 @@ router.delete('/:userId',
 controller.deleteUser
 )
 
+//Delete a a watchlist record
+router.delete('/:watchId',
+// middleware.stripToken,
+// middleware.verifyToken,
+controller.deleteFromWatchList
+)
+
+router.post(
+  '/watch',
+  // middleware.stripToken,
+  // middleware.verifyToken,
+  controller.addToWatchlist
+)
 
 //Update a users stats 
 router.put('/:userId',
@@ -54,5 +67,6 @@ router.get(
     controller.getUserWithBarker
     )
     
+
 
 module.exports = router
