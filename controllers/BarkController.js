@@ -23,7 +23,7 @@ const updateBark = async (req, res) => {
 
 const deleteBark = async (req, res) => {
   try {
-    await Bark.destroy({ where: { id: req.params.barkId } })
+    await Bark.destroy({ where: { barked: req.params.barkId, createdAt: req.params.createdId } })
     res.send({ msg: 'Bark Deleted', payload: req.params.barkId, status: 'Ok' })
   } catch (error) {
     throw error

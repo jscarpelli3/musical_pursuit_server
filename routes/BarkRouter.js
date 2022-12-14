@@ -17,7 +17,7 @@ router.put(
 )
 
 router.delete(
-  '/:barkId',
+  '/:barkId/:createdId',
   middleware.stripToken,
   middleware.verifyToken,
   controller.deleteBark

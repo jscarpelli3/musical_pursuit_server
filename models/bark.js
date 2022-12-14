@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Bark.init({
     bark: DataTypes.STRING,
+    handle: DataTypes.STRING,
     barker: {
       type: DataTypes.INTEGER,
       onDelete: 'CASCADE',

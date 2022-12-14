@@ -55,14 +55,14 @@ router.get(
   '/userbarked/:userId',
   // middleware.stripToken,
   // middleware.verifyToken,
-  controller.getUserWithBarked
+  controller.getUserWithBarkedNoHandle
   )
   //Get the User With Their Barks Made upon others
   router.get(
     '/userbarker/:userId',
     // middleware.stripToken,
     // middleware.verifyToken,
-    controller.getUserWithBarker
+    controller.getUserWithBarkerNoHandle
     )
     
 

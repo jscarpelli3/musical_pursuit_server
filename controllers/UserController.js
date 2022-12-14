@@ -86,12 +86,38 @@ const getUserWithBarker = async (req, res) => {
     res.status(500).send({ error: error.message })
   }
 }
+
+const getUserWithBarkerNoHandle = async (req, res) => {
+  try {
+    console.log(req.params.userId)
+    const data = await Bark.findAll({
+      where: { barked: req.params.userId }
+    })
+    res.send(data)
+  } catch (error) {
+    res.status(500).send({ error: error.message })
+  }
+}
+
 const getUserWithBarked = async (req, res) => {
   try {
     console.log(req.params.userId)
     const data = await User.findOne({
       where: { id: req.params.userId },
       include: [{ model: User, as: 'barked', through: Bark }]
+    })
+
+    res.send(data)
+  } catch (error) {
+    res.status(500).send({ error: error.message })
+  }
+}
+
+const getUserWithBarkedNoHandle = async (req, res) => {
+  try {
+    console.log(req.params.userId)
+    const data = await Bark.findAll({
+      where: { barker: req.params.userId }
     })
 
     res.send(data)
@@ -108,6 +134,8 @@ module.exports = {
   getUser,
   getUserWithBarker,
   getUserWithBarked,
+  getUserWithBarkerNoHandle,
+  getUserWithBarkedNoHandle,
   deleteUser,
   updateStats,
   addToWatchlist,
